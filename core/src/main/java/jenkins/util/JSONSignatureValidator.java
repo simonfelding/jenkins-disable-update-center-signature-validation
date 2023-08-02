@@ -59,8 +59,8 @@ public class JSONSignatureValidator {
             FormValidation warning = null;
 
             JSONObject signature = o.getJSONObject("signature");
-            if (signature.isNullObject()) {
-                return FormValidation.error("No signature block found in " + name);
+            if (signature.isNullObject()) { // Throw a warning if no signature block was found. This lets users use their own update-center.json without jumping through hoops.
+                return FormValidation.warning("No signature block found in " + name);
             }
             o.remove("signature");
 
